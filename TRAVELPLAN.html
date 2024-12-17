@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Destinations</title>
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+        margin: 0;
+        height: 100vh;
+        overflow: hidden;
+        background: url("https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+          no-repeat center center fixed;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: #fff;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 20px;
+        font-size: 3.5rem;
+        font-weight: 700;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .box {
+        background-color: rgba(255, 255, 255, 0.95);
+        border: none;
+        padding: 25px;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-align: center;
+        color: #333;
+        font-size: 1.3rem;
+        font-weight: 600;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+      }
+
+      .box:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+        background-color: rgba(255, 250, 240, 0.95);
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin: 20px 0;
+      }
+
+      select,
+      input,
+      button {
+        padding: 12px 15px;
+        font-size: 1.1rem;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        margin: 5px;
+        transition: all 0.3s ease;
+        font-family: 'Poppins', sans-serif;
+      }
+
+      select:focus,
+      input:focus {
+        border-color: #007bff;
+        outline: none;
+      }
+
+      button {
+        background-color: #ff6f61;
+        color: white;
+        cursor: pointer;
+        border: none;
+        font-weight: 600;
+        transition: transform 0.3s, background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #ff4b47;
+        transform: translateY(-5px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .summary {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: #ffd700;
+        font-size: 2.2rem;
+        text-align: center;
+        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+        font-weight: 700;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Travel Destinations</h1>
+    <div class="grid" id="destinationGrid"></div>
+    <div class="controls">
+      <select id="destinationSelect">
+        <option value="">Select a Destination</option>
+      </select>
+      <input
+        type="number"
+        id="numPeople"
+        min="1"
+        placeholder="Number of People"
+        value="1"
+      />
+      <button onclick="calculateSummary()">Calculate</button>
+      <button id="connectWallet">Connect Wallet</button>
+    </div>
+    <div id="summary" class="summary" style="display: none"></div>
+
+    <script>
+      const destinations = [
+        {
+          name: "Reykjavik",
+          price: 645,
+          image:
+            "https://visitreykjavik.is/sites/default/files/styles/original_medium/public/images/2020-01/nordurljos5-.png.webp?itok=28yjGOKo",
+          url: "https://notslazer.github.io/hackathon1/",
+        },
+        {
+          name: "Banff National Park",
+          price: 670,
+          image:
+            "https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+          url: "https://notslazer.github.io/hackathon1/",
+        },
+        {
+          name: "Cape Town",
+          price: 390,
+          image:
+            "https://images.pexels.com/photos/259447/pexels-photo-259447.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+          url: "https://notslazer.github.io/capetown/",
+        },
+      ];
+
+      const grid = document.getElementById("destinationGrid");
+      const select = document.getElementById("destinationSelect");
+      const summaryDiv = document.getElementById("summary");
+
+      // Populate grid and select dropdown
+      destinations.forEach((destination) => {
+        // Grid Display
+        const box = document.createElement("div");
+        box.className = "box";
+        box.innerText = destination.name;
+        box.onclick = () => {
+          window.open(destination.url, "_blank");
+        };
+        grid.appendChild(box);
+
+        // Dropdown
+        const option = document.createElement("option");
+        option.value = destination.name;
+        option.text = destination.name;
+        select.appendChild(option);
+      });
+
+      function calculateSummary() {
+        const selectedName = document.getElementById("destinationSelect").value;
+        const numPeople = document.getElementById("numPeople").value;
+        const destination = destinations.find((d) => d.name === selectedName);
+
+        if (destination && numPeople > 0) {
+          const totalPrice = destination.price * numPeople;
+          summaryDiv.style.background = `url(${destination.image}) no-repeat center center fixed`;
+          summaryDiv.style.backgroundSize = "cover";
+          summaryDiv.innerHTML = `
+            <h1>${destination.name}</h1>
+            <p>Number of Travelers: ${numPeople}</p>
+            <p>Total Price: $${totalPrice}</p>
+            <button onclick="goBack()">Back</button>
+          `;
+          summaryDiv.style.display = "flex";
+          grid.style.display = "none";
+          document.querySelector(".controls").style.display = "none";
+        }
+      }
+
+      function goBack() {
+        summaryDiv.style.display = "none";
+        grid.style.display = "grid";
+        document.querySelector(".controls").style.display = "flex";
+      }
+
+      // Connect Wallet Redirect
+      document.getElementById('connectWallet').addEventListener('click', function() {
+        window.location.href = "https://portfolio.metamask.io/stake?metamaskEntry=ext_stake_button&metametricsId=0xf36dc800b98d320d73f91ae253c3e274ec95bebd45609afbf8b76dec44101429&metricsEnabled=false&marketingEnabled=false";
+      });
+    </script>
+  </body>
+</html>

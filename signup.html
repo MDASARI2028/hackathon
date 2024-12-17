@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - TripSync</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #ff6a00, #ff8c00);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .signup-container {
+      background-color: #fff;
+      color: #333;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    .signup-container input, .signup-container button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #ff6a00;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #e65c00;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="signup-container">
+    <h1>Sign Up</h1>
+    <input type="text" id="signup-username" placeholder="Create Username" required>
+    <input type="password" id="signup-password" placeholder="Create Password" required>
+    <button onclick="handleSignup()">Sign Up</button>
+    <p id="signup-message"></p>
+  </div>
+
+  <script>
+    function handleSignup() {
+      const username = document.getElementById('signup-username').value;
+      const password = document.getElementById('signup-password').value;
+      const message = document.getElementById('signup-message');
+
+      // Basic validation
+      if (username === '' || password === '') {
+        message.textContent = 'Please fill in all fields!';
+        message.style.color = 'red';
+      } else if (password.length < 6) {
+        message.textContent = 'Password must be at least 6 characters!';
+        message.style.color = 'red';
+      } else {
+        message.textContent = 'Sign up successful!';
+        message.style.color = 'green';
+        // Simulate redirect
+        setTimeout(() => {
+          alert('Redirecting to Login Page...');
+          window.location.href = 'login.html';
+        }, 1000);
+      }
+    }
+  </script>
+
+</body>
+</html>

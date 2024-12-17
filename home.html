@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Planning Website</title>
+
+  <!-- Link to Google Fonts for a cool heading font -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset some default styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #f39c12, #8e44ad);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 0;
+    }
+
+    /* Header and Buttons */
+    .header {
+      display: flex;
+      justify-content: flex-end;
+      padding: 20px 30px;
+      position: fixed;
+      width: 100%;
+      z-index: 10;
+    }
+
+    .header button {
+      background: #00bcd4;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      margin-left: 20px;
+      font-size: 16px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .header button:hover {
+      background: #0097a7;
+      transform: scale(1.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* TripSync Heading */
+    .trip-sync-heading {
+      font-family: 'Pacifico', cursive;
+      font-size: 60px;
+      color: #000000;
+      text-align: center;
+      text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+      margin-top: 100px;
+      animation: fadeIn 2s ease-out;
+    }
+
+    /* FadeIn Animation */
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    /* Content Area */
+    .content {
+      text-align: center;
+      padding: 50px 20px 50px 20px;
+      flex-grow: 1;
+      animation: slideUp 1s ease-out;
+      margin-top: 50px;
+    }
+
+    @keyframes slideUp {
+      0% { opacity: 0; transform: translateY(50px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .content h1 {
+      font-size: 36px;
+      color: #f39c12;
+      margin-bottom: 15px;
+    }
+
+    .content p {
+      font-size: 18px;
+      color: #fff;
+      margin-bottom: 30px;
+      line-height: 1.6;
+      animation: fadeIn 2s ease-out;
+    }
+
+    /* List of Benefits and Facts */
+    .fact-list {
+      list-style-type: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    .fact-list li {
+      background: #8e44ad;
+      margin: 15px 0;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .fact-list li:hover {
+      transform: translateY(-10px);
+      background: #9b59b6;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header {
+        justify-content: space-between;
+        padding: 20px;
+      }
+
+      .trip-sync-heading {
+        font-size: 45px;
+      }
+
+      .content h1 {
+        font-size: 28px;
+      }
+
+      .content p {
+        font-size: 16px;
+      }
+
+      .header button {
+        font-size: 14px;
+        padding: 10px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TripSync Heading -->
+  <h1 class="trip-sync-heading">TripSync</h1>
+
+  <!-- Header with Login and Sign Up buttons -->
+  <div class="header">
+    <a href="login.html">
+        <button>Log In</button>
+    </a>
+
+    <!-- Sign Up Button linking to the sign-up page -->
+    <a href="signup.html">
+      <button>Sign Up</button>
+    </a>
+  </div>
+
+  <!-- Main content -->
+  <div class="content">
+    <h1>Welcome to Your Travel Planner!</h1>
+    <p>Plan your trips, track your budget, and explore exciting destinations with ease!</p>
+
+    <h2>Why Choose Our Travel Planning Website?</h2>
+    <ul class="fact-list">
+      <li>Find the best travel deals and discounts.</li>
+      <li>Track your travel expenses and stay within budget.</li>
+      <li>Create and share your itineraries with friends and family.</li>
+      <li>Access personalized recommendations based on your preferences.</li>
+      <li>Join a community of fellow travel enthusiasts!</li>
+    </ul>
+
+    <h3>Interesting Travel Facts:</h3>
+    <ul class="fact-list">
+      <li>Did you know? There are over 100,000,000 hotels worldwide.</li>
+      <li>On average, people travel 4 times a year for leisure!</li>
+      <li>China is the most visited country in the world.</li>
+      <li>The longest flight ever recorded was 19 hours and 16 minutes from Singapore to Newark.</li>
+    </ul>
+  </div>
+
+</body>
+</html>
